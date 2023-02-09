@@ -1,40 +1,324 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta charset="utf-8" />
     <title>Kalkulator Tokopedia</title>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
       rel="stylesheet"
     />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
   </head>
   <body>
     <div id="app">
-      <v-app>
-        <v-main>
-          <v-container>Hello world</v-container>
-        </v-main>
-      </v-app>
-    </div>
+      <div class="section">
+      <div class="container is-fluid">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title">DROPSHIP PAKAI GUDANG</h1>
+            <div class="box">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Kulak</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_kulak" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Jual</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_jual" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-success" type="text" v-model="wh_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin 4% Tokopedia</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="wh_admin" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">CS 3% Yang Mroses</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="wh_cs" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin Bank</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_bank" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Jasa Gudang</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_jasa" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Benar-Benar Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-warning" type="text" v-model="wh_nett_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="column">
+            <h1 class="title">DROPSHIP TANPA GUDANG</h1>
+            <div class="box">
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Kulak</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_kulak" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Jual</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_jual" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-success" type="text" v-model="no_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin 4% Tokopedia</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="no_admin" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">CS 3% Yang Mroses</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="no_cs" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin Bank</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_bank" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Jasa Gudang</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_jasa" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Benar-Benar Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-warning" type="text" v-model="no_nett_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Load polyfills to support older browsers -->
+    <script
+      src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
     <script>
-      new Vue({
-        el: "#app",
-        vuetify: new Vuetify(),
+      const { createApp } = Vue;
+
+      app = createApp({
+        data() {
+          return {
+            wh_kulak: 0,
+            wh_jual: 0,
+            wh_profit: 0,
+            wh_admin: 0,
+            wh_cs: 0,
+            wh_bank: 0,
+            wh_jasa: 0,
+            wh_nett_profit: 0,
+            no_kulak: 0,
+            no_jual: 0,
+            no_profit: 0,
+            no_admin: 0,
+            no_cs: 0,
+            no_bank: 0,
+            no_jasa: 0,
+            no_nett_profit: 0,
+          };
+        },
+
+        computed: {
+          computeWh() {
+            this.wh_profit = this.wh_jual - this.wh_kulak;
+            this.wh_admin = this.wh_jual * 0.04;
+            this.wh_cs = this.wh_profit * 0.03;
+            this.wh_nett_profit = this.wh_profit - this.wh_admin - this.wh_cs - this.wh_bank - this.wh_jasa;
+          },
+          computeNo() {
+            this.no_profit = this.no_jual - this.no_kulak;
+            this.no_admin = this.no_jual * 0.04;
+            this.no_cs = this.no_profit * 0.03;
+            this.no_nett_profit = this.no_profit - this.no_admin - this.no_cs - this.no_bank - this.no_jasa;
+          }
+        }
       });
+
+      app.mount("#app");
     </script>
   </body>
 </html>
