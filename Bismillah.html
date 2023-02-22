@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTCP6U1SBY3lwZW7c75Axux-ma-OfpQH8b2CzNycpEfZMZO21a8wwPwX1Y9BG79cAhGqyn4BprSK-NKSKi8V_oyiV5SnvYLlFNZC9nqp825O4Q2ayqTB_nIf7QKFDIt16OfE8NzXiAbSUnJp0Dtv--y6WrUUIsLWEt9wogq-V9Cy373IuCz2jYFg_TDg/s614/88.png">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta charset="utf-8" />
+    <title>KALKULATOR CEK PROFIT</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="section">
+      <div class="container is-fluid">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title">KALKULATOR CEK PROFIT</h1>
+            <div class="box">
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+
+                  <label class="label">Harga Kulak</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_kulak" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Jual</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_jual" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Profit Kotor</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-success" type="text" v-model="wh_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin 4% Tokopedia</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="wh_admin" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">CS 3% Yang Mroses</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="wh_cs" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin Bank</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_bank" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Jasa Gudang</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="wh_jasa" v-on:change="computeWh">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Benar-Benar Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-warning" type="text" v-model="wh_nett_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+		  
+		  <!--
+          <div class="column">
+            <h1 class="title">DROPSHIP TANPA GUDANG</h1>
+            <div class="box">
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Kulak</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_kulak" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Harga Jual</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_jual" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-success" type="text" v-model="no_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin 4% Tokopedia</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="no_admin" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">CS 3% Yang Mroses</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-info" type="text" v-model="no_cs" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Admin Bank</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_bank" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Jasa Gudang</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-static" type="text" v-model="no_jasa" v-on:change="computeNo">
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Benar-Benar Profit</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input class="input is-warning" type="text" v-model="no_nett_profit" disabled>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        </div>
+		
+		-->
+      </div>
+    </div>
+    </div>
+    <!-- Load polyfills to support older browsers -->
+    <script
+      src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+    <script>
+      const { createApp } = Vue;
+
+      app = createApp({
+        data() {
+          return {
+            wh_kulak: 0,
+            wh_jual: 0,
+            wh_profit: 0,
+            wh_admin: 0,
+            wh_cs: 0,
+            wh_bank: 0,
+            wh_jasa: 0,
+            wh_nett_profit: 0,
+            wh_kulak_temp: 0,
+            wh_jual_temp: 0,
+            wh_profit_temp: 0,
+            wh_admin_temp: 0,
+            wh_cs_temp: 0,
+            wh_bank_temp: 0,
+            wh_jasa_temp: 0,
+            wh_nett_profit_temp: 0,
+            no_kulak: 0,
+            no_jual: 0,
+            no_profit: 0,
+            no_admin: 0,
+            no_cs: 0,
+            no_bank: 0,
+            no_jasa: 0,
+            no_nett_profit: 0,
+          };
+        },
+
+        computed: {
+          computeWh() {
+            this.wh_kulak_temp = parseFloat(String(this.wh_kulak).replace(/\./g, '').replace(/\,/g, '.'));
+            this.wh_jual_temp = parseFloat(String(this.wh_jual).replace(/\./g, '').replace(/\,/g, '.'));
+            this.wh_bank_temp = parseFloat(String(this.wh_bank).replace(/\./g, '').replace(/\,/g, '.'));
+            this.wh_jasa_temp = parseFloat(String(this.wh_jasa).replace(/\./g, '').replace(/\,/g, '.'));
+            this.wh_profit_temp = this.wh_jual_temp - this.wh_kulak_temp;
+            this.wh_admin_temp = this.wh_jual_temp * 0.04;
+            this.wh_cs_temp = this.wh_profit_temp * 0.03;
+            //this.wh_nett_profit_temp = this.wh_profit_temp - this.wh_admin_temp - this.wh_cs_temp - this.wh_bank_temp - this.wh_jasa_temp;
+            
+            this.wh_kulak = Intl.NumberFormat('id-ID').format(this.wh_kulak_temp);
+            this.wh_jual = Intl.NumberFormat('id-ID').format(this.wh_jual_temp);
+            this.wh_bank = Intl.NumberFormat('id-ID').format(this.wh_bank_temp);
+            this.wh_jasa = Intl.NumberFormat('id-ID').format(this.wh_jasa_temp);
+            this.wh_profit = Intl.NumberFormat('id-ID').format(this.wh_jual_temp - this.wh_kulak_temp);
+            this.wh_admin = Intl.NumberFormat('id-ID').format(this.wh_jual_temp * 0.04);
+            this.wh_cs = Intl.NumberFormat('id-ID').format(this.wh_profit_temp * 0.03);
+            this.wh_nett_profit = Intl.NumberFormat('id-ID').format(this.wh_profit_temp - this.wh_admin_temp - this.wh_cs_temp - this.wh_bank_temp - this.wh_jasa_temp);
+          },
+          computeNo() {
+            this.no_profit = this.no_jual - this.no_kulak;
+            this.no_admin = this.no_jual * 0.04;
+            this.no_cs = this.no_profit * 0.03;
+            this.no_nett_profit = this.no_profit - this.no_admin - this.no_cs - this.no_bank - this.no_jasa;
+          }
+        },
+
+        methods: {
+          formatIDR(num) {
+
+          }
+        }
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
