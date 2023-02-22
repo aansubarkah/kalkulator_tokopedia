@@ -54,7 +54,7 @@
                 <div class="field-body">
                   <div class="field">
                     <p class="control">
-                      <input class="input is-static" type="text" v-model="wh_kulak" v-on:change="computeWh">
+                      <input class="input is-primary" type="text" v-model="wh_kulak" v-on:change="computeWh">
                     </p>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="field-body">
                   <div class="field">
                     <p class="control">
-                      <input class="input is-static" type="text" v-model="wh_jual" v-on:change="computeWh">
+                      <input class="input is-primary" type="text" v-model="wh_jual" v-on:change="computeWh">
                     </p>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                 <div class="field-body">
                   <div class="field">
                     <p class="control">
-                      <input class="input is-static" type="text" v-model="wh_bank" v-on:change="computeWh">
+                      <input class="input is-primary" type="text" v-model="wh_bank" v-on:change="computeWh">
                     </p>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
                 <div class="field-body">
                   <div class="field">
                     <p class="control">
-                      <input class="input is-static" type="text" v-model="wh_jasa" v-on:change="computeWh">
+                      <input class="input is-primary" type="text" v-model="wh_jasa" v-on:change="computeWh">
                     </p>
                   </div>
                 </div>
@@ -343,12 +343,6 @@
             this.no_nett_profit = this.no_profit - this.no_admin - this.no_cs - this.no_bank - this.no_jasa;
           }
         },
-
-        methods: {
-          formatIDR(num) {
-
-          }
-        }
       });
 
       app.mount("#app");
